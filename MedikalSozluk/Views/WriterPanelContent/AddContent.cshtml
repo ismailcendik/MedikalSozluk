@@ -1,0 +1,27 @@
+﻿@model EntityLayer.Concreate.Content
+@{
+    ViewBag.Title = "AddContent";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<br />
+<h2>İçerik Girişi</h2>
+@using (Html.BeginForm("AddContent", "WriterPanelContent", FormMethod.Post))
+{
+
+    <div class="form-group">
+        <input type="hidden" name="HeadingID" value="@ViewBag.d"/>
+        <br />
+        @Html.Label("Başlığa Yorum Yap")
+        @Html.TextAreaFor(x => x.ContentValue,10,30, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ContentValue)
+
+        @*@Html.TextBoxFor(x => x.CategoryID, new { @class = "form-control" })*@
+        @* Daha sonrası için fluent valıdate eklenebılır 25.10.2021 İsmail@Html.ValidationMessageFor(x => x.CategoryID)*@
+
+        <br />
+
+
+        <button class="btn btn-info">Yorum Yap</button>
+    </div>
+
+}
