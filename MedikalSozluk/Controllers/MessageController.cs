@@ -19,9 +19,11 @@ namespace MedikalSozluk.Controllers
         MessageValidator messagevalidator = new MessageValidator();
 
         [Authorize]
-        public ActionResult Inbox(string p)
+        public ActionResult Inbox()
         {
-            var messagelistin = mm.GetListInbox(p);
+            string adminUserName = (string)Session["AdminUserName"];
+            var messagelistin = mm.GetListInbox(adminUserName);
+            ViewBag.unRead = mm.GetCountUnreadMessage(adminUserName);
             return View(messagelistin);
         }
         public ActionResult Sendbox(string p)
@@ -30,9 +32,28 @@ namespace MedikalSozluk.Controllers
             return View(messagelistsend);
 
         }
+        // Daha sonradan çöp kutusu ve taslak eklemek istersek şimdilik gereksiz.29.11
+        //public ActionResult Draft(string p)
+        //{
+        //    var list = mm.GetListDraft(p);
+        //    return View(list);
+        //}
+
+        //public ActionResult Trash(string p)
+        //{
+        //    var list = mm.GetListTrash(p);
+        //    return View(list);
+
+        //}
+
         public ActionResult GetInboxMessageDetails(int id)
         {
             var values = mm.GetByID(id);
+            if (!values.IsRead)
+            {
+                values.IsRead = true;
+                mm.MessageUpdate(values);
+            }
             return View(values);
         }
 
@@ -66,5 +87,21 @@ namespace MedikalSozluk.Controllers
             }
             return View();
         }
+        public ActionResult IsRead(int id) //Bu alan gelen mesajlarindaki okundu butonundan gelen degeri database yazar
+        {
+            var messageValue = mm.GetByID(id);
+
+            if (messageValue.IsRead)
+            {
+                messageValue.IsRead = false;
+            }
+            else
+            {
+                messageValue.IsRead = true;
+            }
+            mm.MessageUpdate(messageValue);
+            return RedirectToAction("Inbox");
+        }
+
     }
 }

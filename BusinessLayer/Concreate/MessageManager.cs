@@ -23,6 +23,26 @@ namespace BusinessLayer.Concreate
             return _messageDal.Get(x => x.MessageID == id);
         }
 
+        public List<Message> GetList()
+        {
+            return _messageDal.List();
+        }
+
+        public void MessageAdd(Message message)
+        {
+            _messageDal.Insert(message);
+        }
+
+        public void MessageDelete(Message message)
+        {
+            _messageDal.Delete(message);
+        }
+
+        public void MessageUpdate(Message message)
+        {
+            _messageDal.Update(message);
+        }
+
         public List<Message> GetListInbox(string p)
         {
             return _messageDal.List(x => x.ReceiverMail == p);
@@ -33,17 +53,18 @@ namespace BusinessLayer.Concreate
             return _messageDal.List(x => x.SenderMail == p);
         }
 
-        public void MessageAdd(Message message)
+        public int GetCountUnreadMessage(string p)
         {
-            _messageDal.Insert(message);
+            return _messageDal.List(x => !x.IsRead && x.ReceiverMail == p).Count;
         }
 
-        public void MessageDelete(Message message)
+
+        public int GetCountUnreadSenderMessage(string p)
         {
-            throw new NotImplementedException();
+            return _messageDal.List(x => !x.IsRead && x.SenderMail == p).Count;
         }
 
-        public void MessageUpdate(Message message)
+        public int MessageCount()
         {
             throw new NotImplementedException();
         }

@@ -29,8 +29,8 @@
                         <div class="card-header">
                             <h3 class="card-title"><b>Mesaj Oku:</b></h3>
                             <div class="card-tools">
-                                <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
-                                <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
+                                <a href="/Message/GetInBoxMessageDetails/@Convert.ToInt32(Model.MessageID-1)" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
+                                <a href="/Message/GetInBoxMessageDetails/@Convert.ToInt32(Model.MessageID+1)" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -44,8 +44,8 @@
                                 <span class="mailbox-read-time float-right">@Model.MessageDate.ToString("dd-MMMMM-yyyy")</span>
                                 </h6>
                             </div>
-                            <!-- /.mailbox-read-info -->
-                            <!--<div class="mailbox-controls with-border text-center">
+                             /.mailbox-read-info 
+                            <div class="mailbox-controls with-border text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
                                         <i class="far fa-trash-alt"></i>
@@ -56,13 +56,13 @@
                                     <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
                                         <i class="fas fa-share"></i>
                                     </button>
-                                </div>-->
-                                <!-- /.btn-group -->
-                                <!--<button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                                </div>
+                                 /.btn-group 
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
                                     <i class="fas fa-print"></i>
                                 </button>
-                            </div>--> @*29.10.2021 MESAJ SİL GERİ DÖN SAYFASI DAHA SONRADANKULLANILABILIR*@
-                            <!-- /.mailbox-controls -->
+                            </div> 29.10.2021 MESAJ SİL GERİ DÖN SAYFASI DAHA SONRADAN DUZENLENECEK ismail
+                             @*/.mailbox-controls*@ 
                             <div class="mailbox-read-message">
                                 <p>@Html.DisplayFor(x => x.MessageContent) </p>
 

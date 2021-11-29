@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAboutDal.cs" />
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Concreate\Repositories\GenericRepository.cs" />
     <Compile Include="Concreate\Repositories\WriterRepository.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfContentDal.cs" />
@@ -110,6 +112,14 @@
     <Compile Include="Migrations\202110311214155_mig_admin_table.designer.cs">
       <DependentUpon>202110311214155_mig_admin_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111251425259_mig_msg_new.cs" />
+    <Compile Include="Migrations\202111251425259_mig_msg_new.designer.cs">
+      <DependentUpon>202111251425259_mig_msg_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111261428019_mig_message_news.cs" />
+    <Compile Include="Migrations\202111261428019_mig_message_news.designer.cs">
+      <DependentUpon>202111261428019_mig_message_news.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110311214155_mig_admin_table.resx">
       <DependentUpon>202110311214155_mig_admin_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111251425259_mig_msg_new.resx">
+      <DependentUpon>202111251425259_mig_msg_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111261428019_mig_message_news.resx">
+      <DependentUpon>202111261428019_mig_message_news.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
