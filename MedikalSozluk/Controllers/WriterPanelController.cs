@@ -69,19 +69,37 @@ namespace MedikalSozluk.Controllers
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
 
+            ViewData = TempData["Heading"] as ViewDataDictionary;
             ViewBag.vlc = valuecategory;
             return View();
         }
         [HttpPost]
         public ActionResult NewHeading(Heading p)
         {
-            string wminfo = (string)Session["WriterMail"];
+            HeadingValidator headingValidator = new HeadingValidator();
+            ValidationResult results = headingValidator.Validate(p);
+           string wminfo = (string)Session["WriterMail"];
             var writeridinfo = c.Writers.Where(x => x.WriterMail == wminfo).Select(y => y.WriterID).FirstOrDefault();
-            p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.WriterID = writeridinfo;
-            p.HeadingStatus = true;
-            hm.HeadingAddBL(p);
-            return RedirectToAction("MyHeading");
+            if (results.IsValid)
+            {
+                p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.WriterID = writeridinfo;
+                p.HeadingStatus = true;
+                hm.HeadingAddBL(p);
+
+                return RedirectToAction("MyHeading");
+            }
+
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            TempData["Heading"] = ViewData;
+
+            return RedirectToAction("NewHeading");
 
         }
 
